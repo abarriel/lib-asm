@@ -1,20 +1,19 @@
 #	Output's Name
 NAME = libfts.a
 
-#	GCC flags
-CFLAGS = -Werror 
-ALL_CFLAGS = -Wall -Wextra $(CFLAGS)
-
 # Sources Objects directories
 SRC = \
-bzero.s \
-strcat.s \
-isalpha.s \
 isdigit.s \
-isalnum.s \
 isascii.s \
 isprint.s \
-toupper.s \
+bonus/islower.s \
+bonus/isupper.s \
+bonus/pow.s \
+isalpha.s \
+isalnum.s \
+#bzero.s
+#strcat.s 
+#toupper.s \
 tolower.s \
 puts.s \
 \
@@ -24,13 +23,9 @@ memcpy.s \
 strdup.s \
 \
 cat.s \
-\
-bonus/islower.s \
-bonus/ismax.s \
-bonus/isupper.s \
-bonus/max.s \
+
+#bonus/max.s \
 bonus/min.s \
-bonus/pow.s \
 bonus/hello.s \
 
 OBJ = $(SRC:%.s=src/%.o)
@@ -48,8 +43,11 @@ $(NAME): $(OBJ)
 	@printf "\r\e\033[0m\e[K\033[1;31m $@ \033[1;32m - Finished\033[0m\n"
 	@ar rc $(NAME) $(OBJ)
 
-tester:
-	@gcc main.c $(NAME) -Imain.h -o tester
+testASM: $(NAME)
+	@gcc -Wextra -Wall  main.c $(NAME) -o tester
+
+testC: $(NAME)
+	@gcc -Wextra -Wall  main.c ressources/libft/libft.a -o tester
 
 clean:
 	@$(RM) $(OBJ)
