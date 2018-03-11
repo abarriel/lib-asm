@@ -34,7 +34,7 @@ bonus/pow.s \
 bonus/hello.s \
 
 OBJ = $(SRC:%.s=src/%.o)
-
+TESTER = tester
 all: makefile $(NAME)
 
 header:
@@ -48,10 +48,15 @@ $(NAME): $(OBJ)
 	@printf "\r\e\033[0m\e[K\033[1;31m $@ \033[1;32m - Finished\033[0m\n"
 	@ar rc $(NAME) $(OBJ)
 
+tester:
+	@gcc main.c $(NAME) -Imain.h -o tester
+
 clean:
 	@$(RM) $(OBJ)
 
 fclean: clean
 	@$(RM) $(NAME)
 
-re: fclean all
+re: fclean all		
+
+.PHONY: $(NAME) clean fclean re tester
