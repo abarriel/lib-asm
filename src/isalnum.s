@@ -1,11 +1,11 @@
-section .text
-    global _ft_isalnum
-
+global _ft_isalnum
+success:
+    inc eax
+    jmp exit
 _ft_isalnum: 
     push rbp
     mov rbp, rsp
 	xor eax, eax
-
     cmp rdi, 122
    	ja exit
     cmp rdi, 97
@@ -18,13 +18,6 @@ _ft_isalnum:
 	jl exit
     cmp rdi, 57
     jle success
-    jmp exit
-
-success:
-    inc eax
-    leave
-	ret
-
 exit:
 	leave
 	ret

@@ -1,11 +1,11 @@
-section .text
-    global _ft_isalpha
-
+global _ft_isalpha
+success:
+    inc eax
+    jmp exit
 _ft_isalpha: 
     push rbp
     mov rbp, rsp
 	xor eax, eax
-    
     cmp rdi, 122
    	ja exit
 	cmp rdi, 65
@@ -14,12 +14,6 @@ _ft_isalpha:
     jle success
     cmp rdi, 97
     jge success
-  	leave
-	ret
-
-success:
-    inc eax
-
 exit:
 	leave
 	ret

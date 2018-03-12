@@ -1,8 +1,5 @@
 ; int	ft_isupper(int c)
-
-section .text
-    global _ft_isupper
-
+global _ft_isupper
 _ft_isupper: 
     push rbp
     mov rbp, rsp
@@ -12,8 +9,6 @@ _ft_isupper:
     cmp rdi, 90
    	ja exit
 	inc eax
-	jmp exit
-
 exit:
 	leave
 	ret

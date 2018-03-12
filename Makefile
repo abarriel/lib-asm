@@ -8,25 +8,22 @@ isascii.s \
 isprint.s \
 bonus/islower.s \
 bonus/isupper.s \
-bonus/pow.s \
-isalpha.s \
-isalnum.s \
-#bzero.s
-#strcat.s 
-#toupper.s \
-tolower.s \
-puts.s \
-\
-strlen.s \
-memset.s \
-memcpy.s \
-strdup.s \
-\
-cat.s \
-
-#bonus/max.s \
+bonus/max.s \
 bonus/min.s \
+isalpha.s \
 bonus/hello.s \
+isalnum.s \
+tolower.s \
+toupper.s \
+fast_strlen.s \
+strlen.s \
+puts.s \
+bzero.s \
+# memset.s \
+#strcat.s 
+# memcpy.s \
+# strdup.s \
+# cat.s \
 
 OBJ = $(SRC:%.s=src/%.o)
 TESTER = tester
