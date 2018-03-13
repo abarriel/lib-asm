@@ -1,7 +1,5 @@
 ; check fast_strlen.s for optimization
-
-section .text
-    global _ft_strlen
+global _ft_strlen
 _ft_strlen:
     push rbp
     mov rbp, rsp

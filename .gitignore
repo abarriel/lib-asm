@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 ressources
+tester
 # Object files
 *.o
 *.ko

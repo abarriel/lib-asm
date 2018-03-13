@@ -2,7 +2,7 @@ section .data
 	nul: db "(null)"
 section .text
 	global _ft_puts
-	extern _ft_strlen
+	extern _ft_strlen_bytes
 ; rdi, rsi, rdx
 standards:
     lea rsi, [rel nul]
@@ -11,10 +11,14 @@ standards:
 _ft_puts:
     push rbp
     mov rbp, rsp
-    cmp rdi, 0 ; why i can do cmp [rsp + 4], 0
+    cmp rdi, 0
     je standards
     mov rsi, rdi
-    call _ft_strlen ; why rdi chansge after the call
+    push rdi
+    push rsi
+    call _ft_strlen_bytes 
+    pop rdi
+    pop rsi
     mov rdi, 1
     mov rdx, rax
 exit:
@@ -27,3 +31,4 @@ exit:
 	syscall
     leave
     ret
+    

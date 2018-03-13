@@ -6,20 +6,20 @@ SRC = \
 isdigit.s \
 isascii.s \
 isprint.s \
+isalpha.s \
+isalnum.s \
+tolower.s \
+toupper.s \
+strlen.s \
+puts.s \
+bzero.s \
+memset.s \
+fast/strlen.s \
+bonus/hello.s \
 bonus/islower.s \
 bonus/isupper.s \
 bonus/max.s \
 bonus/min.s \
-isalpha.s \
-bonus/hello.s \
-isalnum.s \
-tolower.s \
-toupper.s \
-fast_strlen.s \
-strlen.s \
-puts.s \
-bzero.s \
-# memset.s \
 #strcat.s 
 # memcpy.s \
 # strdup.s \
@@ -41,7 +41,7 @@ $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 
 testASM: $(NAME)
-	@gcc -Wextra -Wall  main.c $(NAME) -o tester
+	@gcc main.c $(NAME) -o tester
 
 testC: $(NAME)
 	@gcc -Wextra -Wall  main.c ressources/libft/libft.a -o tester

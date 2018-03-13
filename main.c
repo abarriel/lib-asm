@@ -37,12 +37,12 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_strdup(const char *s);
 char				*ft_strcat(char *dest, const char *src);
+size_t				ft_strlen_bytes(const char *s);
 size_t				ft_strlen(const char *s);
-size_t				fast_strlen(const char *s);
 int                 ft_puts(const char *s);
-int				        ft_max(int nb1, int nb2);
-int				ft_min(int nb1, int nb2);
-void			ft_hello(void);
+int				    ft_max(int nb1, int nb2);
+int				    ft_min(int nb1, int nb2);
+void			    ft_hello(void);
 
 void    is_(int (*func)(int c), char *s, int min, int max)
 {
@@ -101,23 +101,32 @@ void x_min()
     KO;
 }
 
+void x_puts()
+{
+    char s[] = "allanBarriell";
+    puts(s);
+    puts(NULL);
+    ft_puts(s);
+    ft_puts(NULL);
+}
 
-// void x_memset(int c)
-// {
-//     int ret = 0;
-//     char my_str26[] = "adjeiwdjewoidfjweoifjerwdsswdesdadeaawedio";
-//     char str26[] = "adjeiwdjewoidfjweoifjerwdsswdesdadeaawedio";
+void x_memset(int c)
+{
+    int ret = 0;
+    char my_str26[] = "adjeiwdjewoidfjweoifjerwdsswdesdadeaawedio";
+    char str26[] = "adjeiwdjewoidfjweoifjerwdsswdesdadeaawedio";
 
-//     printf("[%s]\n", my_str26);    
-//     ft_memset(my_str26, c, 42);
-//     memset(str26, c, 42);
-//     printf("[%s]\n", my_str26);
-//     ret = memcmp(my_str26, str26, 42);
-//     if (ret)
-//         KO;
-//     else
-//         OK;
-// }
+    printf("string:[%s]\n", my_str26);    
+    ft_memset(my_str26, c, 42);
+    memset(str26, c, 42);
+    printf("mine_after:[%s]\n", my_str26);
+    printf("should_be:[%s]\n", str26);
+    ret = memcmp(my_str26, str26, 42);
+    if (ret)
+        KO;
+    else
+        OK;
+}
 
 void x_bzero()
 {
@@ -133,39 +142,27 @@ void x_bzero()
     else
         OK;
 }
-
-void x_puts()
-{
-    char s[] = "allanBarriell";
-    printf(BLUE"puts: %d"RESET"\n", puts(s));
-    printf(BLUE"puts: %d"RESET"\n", puts(NULL));
-    printf(OR"ft_puts: %d"RESET"\n", ft_puts(s));
-    printf(OR"ft_puts: %d"RESET"\n", ft_puts(NULL));
-}
-
-
 void x_strlen()
 {
     extern char **environ;
     int i = -1;
-    // char s[] = "aaaaaa";
-
-    // printf("[%lu] [%d]\n", strlen(s), ft_strlen(s));
     while(environ[++i])
     {
-        if (strlen(environ[i]) != ft_strlen(environ[i]))
+        // printf("[%lu]-[%zu]\n", strlen(environ[i]), ft_strlen_bytes(environ[i]));
+        if (strlen(environ[i]) != ft_strlen_bytes(environ[i]))
             {
                 KO;
                 return;
             }
-        // printf("[%d] [%d][%d]\n", strlen(environ[i]), ft_strlen(environ[i]), fast_strlen(environ[i]));
-        // printf("[%lu]-[%zu]\n", strlen(environ[i]), ft_strlen(environ[i]));
     }
     OK;
 }
+
+
 int main()
 {
     ft_hello();
+    x_puts();
     IS_CHECKER(ft_islower, 'a', 'z');
     IS_CHECKER(ft_isupper, 'A', 'Z');
     IS_CHECKER(ft_isdigit, '0', '9');
@@ -177,11 +174,10 @@ int main()
     IS_CMP(ft_toupper, toupper);
     x_max();
     x_min();
-    x_puts();
     x_bzero();
     x_strlen();
-
-    // x_memset('z');
+    x_memset('z');
+    x_memset('a');
 
 	return 0;
 }
