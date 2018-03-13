@@ -104,14 +104,13 @@ void x_min()
 void x_puts()
 {
     char s[] = "allanBarriell";
-    puts(NULL);
     int ret;
-    ft_puts(s);
+    // close(stdout);
     ret = puts(s);
-    // ft_puts(NULL);
-    
-    // fclose(stdout);
-    dprintf(2,"ret= %d\n",ret);
+    ft_puts(s);
+    ret = puts(NULL);
+    ft_puts(NULL);
+    // dprintf (2,"ret= %d\n",ret);
 }
 
 void x_memset(int c)
