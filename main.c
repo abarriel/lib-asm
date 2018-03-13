@@ -149,7 +149,7 @@ void x_strlen()
 {
     extern char **environ;
     int i = -1;
-    while(environ[++i])
+    while (environ[++i])
     {
         // printf("[%lu]-[%zu]\n", strlen(environ[i]), ft_strlen_bytes(environ[i]));
         if (strlen(environ[i]) != ft_strlen_bytes(environ[i]))
@@ -160,7 +160,22 @@ void x_strlen()
     }
     OK;
 }
-
+ 
+ void x_strcat()
+{
+    extern char **environ;
+    int i = -1;
+    while (environ[++i])
+    {
+        // printf("[%lu]-[%zu]\n", strlen(environ[i]), ft_strlen_bytes(environ[i]));
+        if (strlen(environ[i]) != ft_strlen_bytes(environ[i]))
+            {
+                KO;
+                return;
+            }
+    }
+    OK;
+}
 
 int main()
 {
