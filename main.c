@@ -108,12 +108,15 @@ void x_puts()
     
     char s[] = "allanBarriell";
     int ret;
-    // fclose(stdout);
     ret = puts(s);
-    ft_puts(s);
+    // dprintf (2,"ret= %d\n",ret);
+       ret = ft_puts(s);
+    // dprintf (2,"ret= %d\n",ret);
+    // fclose(stdout);
+    // dprintf (2,"ret= %d\n",ret);
+    // dprintf (2,"ret= %d\n",ret);
     ret = puts(NULL);
     ft_puts(NULL);
-    // dprintf (2,"ret= %d\n",ret);
 }
 
 void x_memset(int c)
@@ -165,36 +168,23 @@ void x_strlen()
 void x_strcat()
 {
     char	buf[9];
-    char *b;
 
-	bzero(buf, 9);
-	ft_strcat(buf, "");
-	ft_strcat(buf, "j");
-	ft_strcat(buf, "Bon");
-	ft_strcat(buf, "our.");
-	ft_strcat(buf, "");
-    printf("[%s]\n", buf);
-	// mt_assert(strcmp(buf, "Bonjour.") == 0);
-    printf("buf: %s\n", buf);
-	b = ft_strcat(buf, "");
-    printf("buf: %s\n", b);
-    
-    // char *str;
-    // char *save_pointer;
-    // int i = -1;
-    // while (environ[++i])
-    // {
-    //     str = calloc(ft_strlen_bytes(environ[i]), 1);
-    //     save_pointer = ft_strcat(str, environ[i]);
-    //     if (strcmp(str, environ[i]) || strcmp(save_pointer, str))
-    //     {
-    //         KO;
-    //         free(str);
-    //         return;
-    //     }
-    //     free(str);
-    // }
-    // OK;
+    char *str;
+    char *save_pointer;
+    int i = -1;
+    while (environ[++i])
+    {
+        str = calloc(ft_strlen_bytes(environ[i]), 300);
+        save_pointer = ft_strcat(str, environ[i]);
+        if (strcmp(str, environ[i]) || strcmp(save_pointer, str))
+        {
+            KO;
+            free(str);
+            return;
+        }
+        free(str);
+    }
+    OK;
 }
 
 void x_memcpy()
