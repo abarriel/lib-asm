@@ -14,15 +14,15 @@ strlen.s \
 puts.s \
 bzero.s \
 memset.s \
+strcat.s \
+memcpy.s \
 fast/strlen.s \
 bonus/hello.s \
 bonus/islower.s \
 bonus/isupper.s \
 bonus/max.s \
 bonus/min.s \
-#strcat.s 
-# memcpy.s \
-# strdup.s \
+strdup.s \
 # cat.s \
 
 OBJ = $(SRC:%.s=src/%.o)
@@ -54,4 +54,4 @@ fclean: clean
 
 re: fclean all		
 
-.PHONY: $(NAME) clean fclean re tester
+.PHONY: $(NAME) clean fclean re header testASM testC

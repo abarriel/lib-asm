@@ -14,4 +14,3 @@ _ft_hello:
 	syscall
 	leave
 	ret
-

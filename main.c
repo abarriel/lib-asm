@@ -22,6 +22,7 @@
 # define KO_S(s) printf(RED"%s KO"RESET"\n", s)
 # define OK printf(GREEN"ft_%s OK"RESET"\n", __FUNCTION__ + 2)
 # define KO printf(RED"ft_%s KO"RESET"\n", __FUNCTION__ + 2)
+# define MIN(x,y) (y + ((x - y) & ((x - y) >> (sizeof(int) * CHAR_BIT - 1))))
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *s, int c, size_t n);
@@ -44,6 +45,7 @@ int				    ft_max(int nb1, int nb2);
 int				    ft_min(int nb1, int nb2);
 void			    ft_hello(void);
 
+extern char **environ;
 void    is_(int (*func)(int c), char *s, int min, int max)
 {
  	int ret, i = -1;
@@ -103,9 +105,10 @@ void x_min()
 
 void x_puts()
 {
+    
     char s[] = "allanBarriell";
     int ret;
-    // close(stdout);
+    // fclose(stdout);
     ret = puts(s);
     ft_puts(s);
     ret = puts(NULL);
@@ -147,11 +150,9 @@ void x_bzero()
 }
 void x_strlen()
 {
-    extern char **environ;
     int i = -1;
     while (environ[++i])
     {
-        // printf("[%lu]-[%zu]\n", strlen(environ[i]), ft_strlen_bytes(environ[i]));
         if (strlen(environ[i]) != ft_strlen_bytes(environ[i]))
             {
                 KO;
@@ -161,18 +162,69 @@ void x_strlen()
     OK;
 }
  
- void x_strcat()
+void x_strcat()
 {
-    extern char **environ;
+    char *str;
+    char *save_pointer;
     int i = -1;
     while (environ[++i])
     {
-        // printf("[%lu]-[%zu]\n", strlen(environ[i]), ft_strlen_bytes(environ[i]));
-        if (strlen(environ[i]) != ft_strlen_bytes(environ[i]))
-            {
-                KO;
-                return;
-            }
+        str = calloc(ft_strlen_bytes(environ[i]), 1);
+        save_pointer = ft_strcat(str, environ[i]);
+        if (strcmp(str, environ[i]) || strcmp(save_pointer, str))
+        {
+            KO;
+            free(str);
+            return;
+        }
+        free(str);        
+    }
+    OK;
+}
+
+void x_memcpy()
+{
+    char dest_my[1000];
+    char dest[1000];
+    char *save_my;
+    char *save;
+    int i = -1;
+
+    bzero(dest_my, 1000);
+    bzero(dest, 1000);
+    while (environ[++i])
+    {
+        save = memcpy(dest, environ[i], strlen(environ[i]));
+        save_my = ft_memcpy(dest_my, environ[i], strlen(environ[i]));
+        if (strcmp(save, save_my) || strcmp(dest, dest_my))
+        {
+            KO;
+            return;   
+        }
+        bzero(dest_my, 1000);
+        bzero(dest, 1000);
+    }
+    OK;
+}
+
+void x_strdup()
+{
+    char *dest_my;
+    char *dest;
+    int i = -1;
+
+    dest = NULL;
+    while (environ[++i])
+    {
+        // printf("src: %s - len: %lu\n", environ[i], strlen(environ[i]));
+        dest = ft_strdup(environ[i]);
+        // printf("dest: %s\n", dest);
+        if (strcmp(dest, environ[i]))
+        {
+            KO;
+            return;   
+        }
+        free(dest);
     }
     OK;
 }
@@ -191,11 +243,13 @@ int main()
     IS_CMP(ft_tolower, tolower);
     IS_CMP(ft_toupper, toupper);
     x_max();
+    x_strcat();
     x_min();
     x_bzero();
     x_strlen();
     x_memset('z');
-    x_memset('a');
-
+    x_memcpy();
+    x_strdup();
+    // x_memset('a');
 	return 0;
 }

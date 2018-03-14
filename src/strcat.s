@@ -22,21 +22,21 @@ global _ft_strcat
 _ft_strcat:
     push rbp
     mov rbp, rsp
-    xor rcx, rcx
     push rsi
     push rdi
     call _ft_strlen_bytes
-    pop rsi
     pop rdi
-    ; add rdi, rax
+    pop rsi
+    add rdi, rax
+    xor rcx, rcx
 loop1:
     cmp byte[rsi + rcx], 0
     je exit
-    mov byte[rdi + rcx + rax], byte[rsi + rcx]
+    mov al, byte[rsi + rcx]
+    mov byte[rdi + rcx], al
     inc rcx
     jmp loop1
 exit:
-    pop rdi
     mov rax, rdi
     leave
     ret

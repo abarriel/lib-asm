@@ -38,4 +38,3 @@ _ft_puts:
     neg rax
     leave
     ret
-    
