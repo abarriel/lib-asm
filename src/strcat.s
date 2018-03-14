@@ -27,6 +27,8 @@ _ft_strcat:
     call _ft_strlen_bytes
     pop rdi
     pop rsi
+    cmp al, 0
+    jne exit
     add rdi, rax
     xor rcx, rcx
 loop1:
@@ -37,6 +39,7 @@ loop1:
     inc rcx
     jmp loop1
 exit:
+    mov byte[rdi + rcx], 0
     mov rax, rdi
     leave
     ret

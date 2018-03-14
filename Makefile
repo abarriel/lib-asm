@@ -23,7 +23,7 @@ bonus/isupper.s \
 bonus/max.s \
 bonus/min.s \
 strdup.s \
-# cat.s \
+cat.s \
 
 OBJ = $(SRC:%.s=src/%.o)
 TESTER = tester
