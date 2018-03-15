@@ -1,4 +1,4 @@
-; check fast_strlen.s for optimization
+; check fast_strlen.s for optimization - I have to use repne here.s
 global _ft_strlen
 _ft_strlen:
     push rbp

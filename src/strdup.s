@@ -1,12 +1,4 @@
 ; char	*ft_strdup(const char *s)
-; {
-; 	char	*d;
-
-; 	if (!(d = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
-; 		return (NULL);
-; 	ft_memcpy(d, s, ft_strlen(s) + 1);
-; 	return (d);
-; }
 ; rdi, rsi, rdx
 global _ft_strdup
 extern _malloc
@@ -28,6 +20,13 @@ _ft_strdup:
     pop rdx ; get the 3nd parameters 
     pop rsi ; get s for 2 nd arametrs
     mov rdi, rax ; gete 
+    ; push rdi
+    ; mov rcx, rdx
+    ; mov rax, rsi
+    ; rep movsb
+    ; pop rdi
+    ; mov rax, rdi
+    ; rep is obviously call by ft_memcpy
     call _ft_memcpy
 exit:
     leave

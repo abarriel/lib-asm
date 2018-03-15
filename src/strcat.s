@@ -17,7 +17,6 @@
 ; rdi dest
 ; rsi src
 ; rdx
-extern _ft_strlen_bytes
 global _ft_strcat
 _ft_strcat:
     push rbp

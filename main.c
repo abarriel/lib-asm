@@ -167,8 +167,6 @@ void x_strlen()
  
 void x_strcat()
 {
-    char	buf[9];
-
     char *str;
     char *save_pointer;
     int i = -1;
@@ -252,10 +250,10 @@ int main()
     x_min();
     x_bzero();
     x_strlen();
+    x_memset(0);
     x_memset('z');
     x_memcpy();
     x_strdup();
     
-    // x_memset('a');
 	return 0;
 }
