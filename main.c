@@ -212,7 +212,6 @@ void x_memcpy()
 
 void x_strdup()
 {
-    char *dest_my;
     char *dest;
     int i = -1;
 
